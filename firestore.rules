@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Only authenticated users can access data
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Check if user belongs to the organization
+    function belongsToOrg(orgId) {
+      return request.auth.token.orgId == orgId;
+    }
+
+    // Organization-level access control
+    match /organizations/{orgId} {
+      allow read: if isAuthenticated() && belongsToOrg(orgId);
+      allow write: if isAuthenticated() && belongsToOrg(orgId);
+
+      // Users within an organization
+      match /users/{userId} {
+        allow read: if isAuthenticated() && belongsToOrg(orgId);
+        allow write: if isAuthenticated() && request.auth.uid == userId;
+      }
+
+      // Sessions (clinical notes / case files) — sanitized only
+      match /sessions/{sessionId} {
+        allow read, write: if isAuthenticated() && belongsToOrg(orgId);
+      }
+
+      // Patients (healthcare workspace — initials only, no PII)
+      match /patients/{patientId} {
+        allow read, write: if isAuthenticated() && belongsToOrg(orgId);
+      }
+
+      // Cases (legal workspace)
+      match /cases/{caseId} {
+        allow read, write: if isAuthenticated() && belongsToOrg(orgId);
+      }
+    }
+  }
+}

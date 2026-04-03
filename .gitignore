@@ -1,0 +1,53 @@
+# Flutter
+/build/
+*.iml
+*.ipr
+*.iws
+.idea/
+*.class
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Dart
+.dart_tool/
+.packages
+
+# Firebase Config (regenerate with: flutterfire configure)
+lib/firebase_options.dart
+**/GoogleService-Info.plist
+**/google-services.json
+
+# macOS
+macos/Pods/
+macos/.symlinks/
+macos/Flutter/ephemeral/
+macos/Flutter/GeneratedPluginRegistrant.swift
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/ephemeral/
+
+# Android
+android/.gradle/
+android/local.properties
+android/key.properties
+
+# IDE
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env / Secrets
+.env
+*.key
+*.pem
+
+# Model files (too large for git — served via Firebase Storage)
+*.task
+*.litertlm
+*.tflite

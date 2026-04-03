@@ -1,0 +1,48 @@
+name: aegis
+description: "Aegis — Air-Gapped Edge AI Infrastructure for regulated industries."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.11.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI
+  cupertino_icons: ^1.0.8
+  google_fonts: ^6.2.1
+
+  # Firebase
+  firebase_core: any
+  cloud_firestore: any
+  firebase_auth: any
+  firebase_storage: any
+
+  # State Management
+  provider: ^6.1.2
+
+  # Navigation
+  go_router: ^14.8.0
+
+  # Local Storage
+  path_provider: ^2.1.5
+
+  # Audio Recording
+  record: ^6.2.0
+
+  # On-Device LLM Inference (Gemma 4 E4B)
+  flutter_gemma: ^0.12.8
+
+  # Utilities
+  uuid: ^4.5.1
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
